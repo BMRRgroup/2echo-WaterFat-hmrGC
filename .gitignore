@@ -2,6 +2,7 @@
 syncScripts/
 *flycheck*
 
+notebooks/figures/
 docs/generated/
 
 .vscode
