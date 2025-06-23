@@ -33,7 +33,10 @@ class DualEcho(Image3D):
         dTE = np.diff(TE_s)  # FIXME: unnecessary variable definition
         period = np.abs(1 / (TE_s[1] - TE_s[0])) * 1e6 / self.params['centerFreq_Hz']
 
-        range_fm_ppm = [-period*0.5, period*0.5]
+        if "num_periods" not in params: ## Specify the number of 2π phase periods to unwrap
+            params["num_periods"] = 1
+        range_fm_ppm = np.array([-period, period])*params["num_periods"]/2
+
         self.range_fm_ppm = np.array(range_fm_ppm)
 
     @property
